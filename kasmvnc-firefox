@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:ubuntujammy
+FROM  ghcr.io/digiimmi/baseimage-kasmvnc-ubuntujammy:latest
 
 ENV TITLE="Firefox"
 

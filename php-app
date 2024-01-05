@@ -5,6 +5,8 @@ RUN apt-get update \
 && php -m \
 && echo "===============================" \
 && apt-get install -y libzip-dev libmagic-dev libevent-dev libpng-dev git wget curl nload libssl-dev \
+&& docker-php-ext-install sockets \
+&& echo "===============================" \
 && pecl install event redis  \
 && docker-php-ext-install zip mysqli bcmath gd pcntl pdo_mysql event redis \
 && echo "===============================" \

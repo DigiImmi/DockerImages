@@ -5,6 +5,7 @@ RUN apt-get update \
 && apt-get install -y libzip-dev libpng-dev libevent-dev libssl-dev git wget curl nload \
 && docker-php-ext-install zip mysqli bcmath gd pcntl pdo_mysql sockets \
 && pecl install event redis  \
+&& docker-php-ext-install event \
 && php -m \
 && mkdir -p /usr/src/APP
 WORKDIR /usr/src/APP

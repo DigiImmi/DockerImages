@@ -3,6 +3,7 @@ FROM ghcr.io/digiimmi/php-7.4-cli:latest
 RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y libzip-dev libmagic-dev libevent-dev git wget curl nload openssl \
+&& openssl version \
 && pecl install event redis  \
 && docker-php-ext-install zip fileinfo mysqli bcmath ctype curl gd hash iconv json mbstring pcntl pdo pdo_mysql phar posix xml event redis \
 && mkdir -p /usr/src/APP

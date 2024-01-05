@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   #FILENAME: kasmvnc-firefox
-  FILENAME: php-app
+  FILENAME: bt-kx
 
 jobs:
   build-and-push:

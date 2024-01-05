@@ -5,7 +5,8 @@ RUN apt-get update \
 && php -m \
 && echo "===============================" \
 && apt-get install -y libzip-dev libmagic-dev libevent-dev libpng-dev git wget curl nload \
-&& docker-php-ext-install zip mysqli bcmath gd pcntl pdo_mysql \
+&& pecl install event redis  \
+&& docker-php-ext-install zip mysqli bcmath gd pcntl pdo_mysql event redis \
 && echo "===============================" \
 && php -m \
 && mkdir -p /usr/src/APP

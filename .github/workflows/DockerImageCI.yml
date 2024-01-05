@@ -9,7 +9,8 @@ on:
 ######
 env:
   REGISTRY: ghcr.io
-  FILENAME: kasmvnc-firefox
+  #FILENAME: kasmvnc-firefox
+  FILENAME: php-APP
 
 jobs:
   build-and-push:

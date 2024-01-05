@@ -1,2 +1,3 @@
 ghcr.io/linuxserver/baseimage-kasmvnc:ubuntujammy
 php:7.4-cli
+btpanel/baota:fresh

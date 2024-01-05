@@ -4,8 +4,7 @@ RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y libzip-dev libpng-dev libevent-dev libssl-dev git wget curl nload \
 && docker-php-ext-install zip mysqli bcmath gd pcntl pdo_mysql sockets \
-&& pecl install event redis  \
-&& echo "extension=event.so" | tee -a /etc/php.ini
+&& pecl install event \
 && docker-php-ext-install event \
 && php -m \
 && mkdir -p /usr/src/APP

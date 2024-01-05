@@ -3,6 +3,6 @@ FROM ghcr.io/digiimmi/php-7.4-cli:latest
 RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y libzip-dev libmagic-dev git wget curl nload \
-&& docker-php-ext-install zip fileinfo mysqli redis pcntl posix iconv pdo gd pdo_mysql  event curl json xml openssl common ctype phar mbstring bcmath
+&& docker-php-ext-install zip fileinfo mysqli redis pcntl posix iconv pdo gd pdo_mysql  event curl json xml openssl common ctype phar mbstring bcmath \
 && mkdir -p /usr/src/APP
 WORKDIR /usr/src/APP

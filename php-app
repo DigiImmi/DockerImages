@@ -2,13 +2,10 @@ FROM ghcr.io/digiimmi/php-7.4-cli:latest
 
 RUN apt-get update \
 && apt-get upgrade -y \
-&& php -m \
-&& echo "===============================" \
 && apt-get install -y libzip-dev libpng-dev libevent-dev libssl-dev git wget curl nload \
 && docker-php-ext-install zip mysqli bcmath gd pcntl pdo_mysql sockets \
-&& echo "===============================" \
 && pecl install event redis  \
-&& echo "===============================" \
+&& docker-php-ext-install event redis \
 && php -m \
 && mkdir -p /usr/src/APP
 WORKDIR /usr/src/APP

@@ -9,8 +9,10 @@ on:
 #####
 env:
   REGISTRY: ghcr.io
-  TAR_IMG: ghcr.io/linuxserver/baseimage-kasmvnc:ubuntujammy
-  PUSH_NAME: baseimage-kasmvnc-ubuntujammy
+  #TAR_IMG: ghcr.io/linuxserver/baseimage-kasmvnc:ubuntujammy
+  #PUSH_NAME: baseimage-kasmvnc-ubuntujammy
+  TAR_IMG: php:7.4-cli
+  PUSH_NAME: php-7.4-cli
   
 jobs:
   build-and-push:

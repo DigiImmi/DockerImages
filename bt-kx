@@ -1,0 +1,19 @@
+FROM ghcr.io/digiimmi/baota-fresh:latest
+
+RUN sed -i 's/enabled=1/enabled=0/' /etc/yum/pluginconf.d/fastestmirror.conf \
+&& yum update -y && yum install -y coreutils \
+&& wget -O syupdate6.sh http://io.bt.sy/install/update6.sh && bash syupdate6.sh \
+&& wget -O kaixin.zip https://raw.githubusercontent.com/flucont/btcloud/main/public/static/file/kaixin.zip \
+&& unzip -o -d /www/server/panel/plugin kaixin.zip \
+&& rm -f syupdate6.sh kaixin.zip \
+&& rm -f /www/server/panel/data/iplist.txt \
+&& sed -i '/\.account \.form_title {/,/}/ s/height: 40px;/height: 50px;/g' /www/server/panel/BTPanel/templates/default/login.html \
+&& sed -i '/\.account \.form_title {/,/}/ s/margin-bottom: 25px;/margin-bottom 30px;/g' /www/server/panel/BTPanel/templates/default/login.html \
+&& sed -i '/\.account \.form_title {/,/}/ s/font-size: 26px;/font-size: 42px;/g' /www/server/panel/BTPanel/templates/default/login.html \
+&& sed -i '/\.account \.form_title {/,/}/ s/color: #444;/color: #48a9ad;/g' /www/server/panel/BTPanel/templates/default/login.html \
+&& sed -i '/\.login_btn:hover {/,/}/ s/background: linear-gradient(#10952a,#088d22);/background: linear-gradient(to right, #8196f0 0%, #03d6af 100%);/g' /www/server/panel/BTPanel/templates/default/login.html \
+&& sed -i '/\.login_btn:hover {/,/}/ s/border: 1px solid #10952a;/border: 1px solid #d1d1d1;/g' /www/server/panel/BTPanel/templates/default/login.html \
+&& sed -i 's/background: linear-gradient(#20a53a,#189d32);/background: linear-gradient(to right, #03d6af 0%, #8196f0 100%);/g; s/border: 1px solid #20a53a;/border: 1px solid #d1d1d1;/g; s/box-shadow: inset 0 1px 2px #30ad42;/box-shadow: inset 0 1px 2px #d1d1d1;/g' /www/server/panel/BTPanel/templates/default/login.html \
+&& sed -i 's/<img src="\/static\/images\/bt_logo_new.png">/<img src="\/static\/images\/bt_logo_new.png" hidden>/g' /www/server/panel/BTPanel/templates/default/login.html \
+&& sed -i 's/<div class="entrance"/<div hidden class="entrance"/g' /www/server/panel/BTPanel/templates/default/login.html \
+&& sed -i 's/<a class="forget_pwd"/<a hidden class="forget_pwd"/g' /www/server/panel/BTPanel/templates/default/login.html

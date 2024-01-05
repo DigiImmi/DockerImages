@@ -11,8 +11,8 @@ env:
   REGISTRY: ghcr.io
   #TAR_IMG: ghcr.io/linuxserver/baseimage-kasmvnc:ubuntujammy
   #PUSH_NAME: baseimage-kasmvnc-ubuntujammy
-  TAR_IMG: btpanel/baota:fresh
-  PUSH_NAME: baota-fresh
+  TAR_IMG: mysql:5.7
+  PUSH_NAME: mysql-5.7
   
 jobs:
   build-and-push:

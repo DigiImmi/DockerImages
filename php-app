@@ -4,10 +4,8 @@ RUN apt-get update \
 && apt-get upgrade -y \
 && php -m \
 && echo "===============================" \
-&& apt-get install -y libzip-dev libmagic-dev libevent-dev libcurl4-openssl-dev libpng-dev git wget curl nload \
-&& docker-php-ext-install zip fileinfo mysqli bcmath ctype curl gd \
-&& echo "===============================" \
-&& docker-php-ext-install hash iconv mbstring pcntl pdo pdo_mysql phar posix xml \
+&& apt-get install -y libzip-dev libmagic-dev libevent-dev libpng-dev git wget curl nload \
+&& docker-php-ext-install zip mysqli bcmath gd pcntl pdo_mysql \
 && echo "===============================" \
 && php -m \
 && mkdir -p /usr/src/APP

@@ -23,8 +23,8 @@ RUN if [ -z ${NGINX_VERSION+x} ]; then NGINX_VERSION=$(curl -sL "http://dl-cdn.a
 && echo 'fastcgi_param  PATH_INFO          $fastcgi_path_info; # http://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_split_path_info' >> /etc/nginx/fastcgi_params \
 && echo 'fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name; # https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/#connecting-nginx-to-php-fpm' >> /etc/nginx/fastcgi_params \
 && echo 'fastcgi_param  SERVER_NAME        $host; # Send HTTP_HOST as SERVER_NAME. If HTTP_HOST is blank, send the value of server_name from nginx (default is `_`)' >> /etc/nginx/fastcgi_params \
-&& rm -f /etc/nginx/conf.d/stream.conf && \
-&& rm -f /etc/nginx/http.d/default.conf && \
+&& rm -f /etc/nginx/conf.d/stream.conf \
+&& rm -f /etc/nginx/http.d/default.conf \
 && if [ "$(readlink /usr/bin/php)" != "php74" ]; then rm -rf /usr/bin/php && ln -s /usr/bin/php74 /usr/bin/php; fi \
 && sed -i "s#;error_log = log/php74/error.log.*#error_log = /config/log/php/error.log#g" /etc/php74/php-fpm.conf \
 && sed -i "s#user = nobody.*#user = abc#g" /etc/php74/php-fpm.d/www.conf \
@@ -37,12 +37,12 @@ RUN if [ -z ${NGINX_VERSION+x} ]; then NGINX_VERSION=$(curl -sL "http://dl-cdn.a
 && rm composer-setup.php \
 && ln -s /usr/bin/composer.phar /usr/bin/composer \
 && sed -i "s#/var/log/messages {}.*# #g" /etc/logrotate.conf \
-&& sed -i 's#/usr/sbin/logrotate /etc/logrotate.conf#/usr/sbin/logrotate /etc/logrotate.conf -s /config/log/logrotate.status#g' /etc/periodic/daily/logrotate
+&& sed -i 's#/usr/sbin/logrotate /etc/logrotate.conf#/usr/sbin/logrotate /etc/logrotate.conf -s /config/log/logrotate.status#g' /etc/periodic/daily/logrotate \
 && mkdir -p /var/lib/mysql \
-&& git clone https://github.com/linuxserver/docker-baseimage-alpine-nginx.git
-&& git clone https://github.com/linuxserver/docker-mariadb.git
-&& cp -r ./docker-baseimage-alpine-nginx/root/* /
-&& cp -r ./docker-mariadb/root/* /
+&& git clone https://github.com/linuxserver/docker-baseimage-alpine-nginx.git \
+&& git clone https://github.com/linuxserver/docker-mariadb.git \
+&& cp -r ./docker-baseimage-alpine-nginx/root/* / \
+&& cp -r ./docker-mariadb/root/* / \
 && rm -rf /tmp/* $HOME/.cache ./docker-baseimage-alpine-nginx ./docker-mariadb
 
 # ports and volumes

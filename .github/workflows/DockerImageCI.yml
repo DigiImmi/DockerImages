@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   #FILENAME: kasmvnc-firefox
-  FILENAME: php-app
+  FILENAME: anmp
 
 jobs:
   build-and-push:
@@ -55,7 +55,8 @@ jobs:
           context: .
           file: ./${{ env.FILENAME }}
           # 所需要的体系结构，可以在 Available platforms 步骤中获取所有的可用架构
-          platforms: 'linux/amd64,linux/arm64'
+          # platforms: 'linux/amd64,linux/arm64'
+          platforms: 'linux/amd64'
           push: true
           # 给清单打上多个标签
           tags: |

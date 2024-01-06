@@ -14,10 +14,10 @@ RUN if [ -z ${NGINX_VERSION+x} ]; then NGINX_VERSION=$(curl -sL "http://dl-cdn.a
  nginx-mod-http-geoip nginx-mod-http-geoip2 nginx-mod-http-headers-more nginx-mod-http-image-filter nginx-mod-http-perl \
  nginx-mod-http-redis2 nginx-mod-http-set-misc nginx-mod-http-upload-progress nginx-mod-http-xslt-filter nginx-mod-mail \
  nginx-mod-rtmp nginx-mod-stream nginx-mod-stream-geoip nginx-mod-stream-geoip2 nginx-vim \
-&& apk add --no-cache php74 php74-bcmath php74-bz2 php74-ctype php74-curl php74-dom php74-exif php74-fileinfo php74-fpm php74-ftp php74-gd php74-gmp php74-iconv php74-imap php74-intl php74-json php74-ldap \
- php74-mbstring php74-mysqli php74-mysqlnd php74-opcache php74-openssl php74-pdo_mysql php74-pdo_odbc php74-pdo_pgsql php74-phar php74-pdo_sqlite php74-pear php74-pgsql php74-posix php74-session php74-soap \
- php74-simplexml php74-sockets php74-sodium php74-sqlite3 php74-tokenizer php74-xml php74-xmlreader php74-xmlwriter php74-xsl php74-zip php74-zlib php74-pecl-apcu php74-pecl-memcached php74-pecl-redis \
-&& apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community php74-pecl-mcrypt \
+&& apk add --no-cache php7 php7-bcmath php7-bz2 php7-ctype php7-curl php7-dom php7-exif php7-fileinfo php7-fpm php7-ftp php7-gd php7-gmp php7-iconv php7-imap php7-intl php7-json php7-ldap \
+ php7-mbstring php7-mysqli php7-mysqlnd php7-opcache php7-openssl php7-pdo_mysql php7-pdo_odbc php7-pdo_pgsql php7-phar php7-pdo_sqlite php7-pear php7-pgsql php7-posix php7-session php7-soap \
+ php7-simplexml php7-sockets php7-sodium php7-sqlite3 php7-tokenizer php7-xml php7-xmlreader php7-xmlwriter php7-xsl php7-zip php7-zlib php7-pecl-apcu php7-pecl-memcached php7-pecl-redis \
+&& apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community php7-pecl-mcrypt \
 && apk add --no-cache mariadb==${MARIADB_VERSION} mariadb-backup==${MARIADB_VERSION} mariadb-client==${MARIADB_VERSION} mariadb-common==${MARIADB_VERSION} mariadb-server-utils==${MARIADB_VERSION} \
 && echo 'fastcgi_param  HTTP_PROXY         ""; # https://httpoxy.org/' >> /etc/nginx/fastcgi_params \
 && echo 'fastcgi_param  PATH_INFO          $fastcgi_path_info; # http://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_split_path_info' >> /etc/nginx/fastcgi_params \
@@ -25,6 +25,9 @@ RUN if [ -z ${NGINX_VERSION+x} ]; then NGINX_VERSION=$(curl -sL "http://dl-cdn.a
 && echo 'fastcgi_param  SERVER_NAME        $host; # Send HTTP_HOST as SERVER_NAME. If HTTP_HOST is blank, send the value of server_name from nginx (default is `_`)' >> /etc/nginx/fastcgi_params \
 && rm -f /etc/nginx/conf.d/stream.conf \
 && rm -f /etc/nginx/http.d/default.conf \
+&& ls /usr/bin/php* \
+&& ls /etc/php* \
+&& cat /etc/php74/php-fpm.conf \
 && if [ "$(readlink /usr/bin/php)" != "php74" ]; then rm -rf /usr/bin/php && ln -s /usr/bin/php74 /usr/bin/php; fi \
 && sed -i "s#;error_log = log/php74/error.log.*#error_log = /config/log/php/error.log#g" /etc/php74/php-fpm.conf \
 && sed -i "s#user = nobody.*#user = abc#g" /etc/php74/php-fpm.d/www.conf \

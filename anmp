@@ -10,7 +10,7 @@ ENV DATADIR=$MYSQL_DIR/databases
 RUN apk update \
 && if [ -z ${NGINX_VERSION+x} ]; then NGINX_VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp && awk '/^P:nginx$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); fi \
 && if [ -z ${MARIADB_VERSION+x} ]; then MARIADB_VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp && awk '/^P:mariadb$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); fi \
-&& apk add --no-cache apache2-utils git logrotate nano openssl memcached gnupg \
+&& apk add --no-cache apache2-utils git logrotate nano openssl memcached gnupg php7 \
 && apk add --no-cache nginx nginx-mod-http-brotli nginx-mod-http-dav-ext nginx-mod-http-echo nginx-mod-http-fancyindex \
  nginx-mod-http-geoip nginx-mod-http-geoip2 nginx-mod-http-headers-more nginx-mod-http-image-filter nginx-mod-http-perl \
  nginx-mod-http-redis2 nginx-mod-http-set-misc nginx-mod-http-upload-progress nginx-mod-http-xslt-filter nginx-mod-mail \

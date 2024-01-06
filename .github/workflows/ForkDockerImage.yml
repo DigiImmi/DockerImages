@@ -11,8 +11,8 @@ env:
   REGISTRY: ghcr.io
   #TAR_IMG: ghcr.io/linuxserver/baseimage-kasmvnc:ubuntujammy
   #PUSH_NAME: baseimage-kasmvnc-ubuntujammy
-  TAR_IMG: mysql:5.7
-  PUSH_NAME: mysql-5.7
+  TAR_IMG: ghcr.io/linuxserver/baseimage-alpine:3.19
+  PUSH_NAME: baseimage-alpine-3.19
   
 jobs:
   build-and-push:

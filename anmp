@@ -9,11 +9,11 @@ ENV DATADIR=$MYSQL_DIR/databases
 # install packages
 RUN if [ -z ${NGINX_VERSION+x} ]; then NGINX_VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp && awk '/^P:nginx$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); fi \
 && if [ -z ${MARIADB_VERSION+x} ]; then MARIADB_VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp && awk '/^P:mariadb$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); fi \
-&& apk add --no-cache apache2-utils git nginx logrotate nano openssl memcached gnupg \
-&& apk add --no-cache nginx==${NGINX_VERSION} nginx-mod-http-brotli==${NGINX_VERSION} nginx-mod-http-dav-ext==${NGINX_VERSION} nginx-mod-http-echo==${NGINX_VERSION} nginx-mod-http-fancyindex==${NGINX_VERSION} \
- nginx-mod-http-geoip==${NGINX_VERSION} nginx-mod-http-geoip2==${NGINX_VERSION} nginx-mod-http-headers-more==${NGINX_VERSION} nginx-mod-http-image-filter==${NGINX_VERSION} nginx-mod-http-perl==${NGINX_VERSION} \
- nginx-mod-http-redis2==${NGINX_VERSION} nginx-mod-http-set-misc==${NGINX_VERSION} nginx-mod-http-upload-progress==${NGINX_VERSION} nginx-mod-http-xslt-filter==${NGINX_VERSION} nginx-mod-mail==${NGINX_VERSION} \
- nginx-mod-rtmp==${NGINX_VERSION} nginx-mod-stream==${NGINX_VERSION} nginx-mod-stream-geoip==${NGINX_VERSION} nginx-mod-stream-geoip2==${NGINX_VERSION} nginx-vim==${NGINX_VERSION} \
+&& apk add --no-cache apache2-utils git logrotate nano openssl memcached gnupg \
+&& apk add --no-cache nginx nginx-mod-http-brotli nginx-mod-http-dav-ext nginx-mod-http-echo nginx-mod-http-fancyindex \
+ nginx-mod-http-geoip nginx-mod-http-geoip2 nginx-mod-http-headers-more nginx-mod-http-image-filter nginx-mod-http-perl \
+ nginx-mod-http-redis2 nginx-mod-http-set-misc nginx-mod-http-upload-progress nginx-mod-http-xslt-filter nginx-mod-mail \
+ nginx-mod-rtmp nginx-mod-stream nginx-mod-stream-geoip nginx-mod-stream-geoip2 nginx-vim \
 && apk add --no-cache php74 php74-bcmath php74-bz2 php74-ctype php74-curl php74-dom php74-exif php74-fileinfo php74-fpm php74-ftp php74-gd php74-gmp php74-iconv php74-imap php74-intl php74-json php74-ldap \
  php74-mbstring php74-mysqli php74-mysqlnd php74-opcache php74-openssl php74-pdo_mysql php74-pdo_odbc php74-pdo_pgsql php74-phar php74-pdo_sqlite php74-pear php74-pgsql php74-posix php74-session php74-soap \
  php74-simplexml php74-sockets php74-sodium php74-sqlite3 php74-tokenizer php74-xml php74-xmlreader php74-xmlwriter php74-xsl php74-zip php74-zlib php74-pecl-apcu php74-pecl-memcached php74-pecl-redis \

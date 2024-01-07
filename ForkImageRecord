@@ -3,3 +3,4 @@ php:7.4-cli
 btpanel/baota:fresh
 mysql:5.7
 ghcr.io/linuxserver/baseimage-alpine:3.19
+php:7.4-fpm

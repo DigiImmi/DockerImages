@@ -7,14 +7,9 @@ RUN apt-get update \
 && pecl install event redis \
 && docker-php-ext-enable event redis \
 && php -m \
-&& php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" \
-&& php composer-setup.php \
+&& php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+&& php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
 && php -r "unlink('composer-setup.php');" \
-&& mkdir -p /app \
-&& mkdir -p /tmp/logs \
-&& mkdir -p /tmp/sessions \
-&& mkdir -p /tmp/views \
-&& rm -rf /app/runtime \
-&& ln -s /tmp  /app/runtime \
-&& ln -s /app/composer.phar /usr/bin/composer \
-WORKDIR /app
+&& mkdir -p /usr/src/APP
+
+WORKDIR /usr/src/APP

@@ -10,7 +10,7 @@ RUN apt-get update \
 && php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" \
 && php composer-setup.php \
 && php -r "unlink('composer-setup.php');" \
-&& mkdir -p /usr/src/APP
+&& mkdir -p /app \
 && mkdir -p /tmp/logs \
 && mkdir -p /tmp/sessions \
 && mkdir -p /tmp/views \

@@ -1,0 +1,13 @@
+FROM alpine:latest
+
+RUN apk update \
+&& apk add git wget curl nload php8-cli php8-redis php8-pcntl php8-posix php8-iconv php8-pdo php8-gd php8-pdo_mysql php8-zip php8-gd php8-fileinfo \
+ php8-pecl-event  php8-curl php8-json php8-xml  php8-openssl   php8-mysqli php8-common php8-ctype php8-phar php8-mbstring php8-bcmath  \
+&& ln -s /usr/bin/php8 /usr/bin/php \
+&& php -m \
+&& php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+&& php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+&& php -r "unlink('composer-setup.php');" \
+&& mkdir -p /usr/src/APP
+
+WORKDIR /usr/src/APP

@@ -4,7 +4,7 @@ ENV TITLE="Firefox"
 
 ARG install_apps="bzip2 libgtk-3-0"
 ARG APP_Url="https://download-installer.cdn.mozilla.net/pub/firefox/releases/121.0/linux-x86_64/zh-CN/firefox-121.0.tar.bz2"
-ARG APP_START="while true; do firefox; echo 'good' > /root/html/123.html; done"
+ARG APP_START="while true; do firefox; done"
 
 RUN apt-get update \
 && apt-get install -y wget fonts-wqy-zenhei fonts-wqy-microhei ${install_apps} \

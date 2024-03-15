@@ -4,13 +4,7 @@ ENV TITLE="Firefox"
 
 ARG install_apps="bzip2 libgtk-3-0"
 ARG APP_Url="https://download-installer.cdn.mozilla.net/pub/firefox/releases/121.0/linux-x86_64/zh-CN/firefox-121.0.tar.bz2"
-ARG APP_START="mkdir -p /root/html
-python3 -m http.server --bind 0.0.0.0 12700 --directory /root/html &
-while true; do
-  firefox
-  echo 'good' > /root/html/123.html
-done
-"
+ARG APP_START="while true; do firefox; echo 'good' > /root/html/123.html; done"
 
 RUN apt-get update \
 && apt-get install -y wget fonts-wqy-zenhei fonts-wqy-microhei ${install_apps} \
@@ -23,7 +17,9 @@ RUN apt-get update \
 && cp /usr/lib/firefox/browser/chrome/icons/default/default128.png /usr/share/icons/app_icon.png \
 && apt-get clean -y \
 && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
-&& echo "${APP_START}" > /defaults/autostart \
+&& echo 'mkdir -p /root/html' > /defaults/autostart \
+&& echo 'python3 -m http.server --bind 0.0.0.0 12700 --directory /root/html &' > /defaults/autostart \
+&& echo "${APP_START}" >> /defaults/autostart \
 && chmod 755 /defaults/autostart \
 && mkdir -p /usr/lib/firefox/browser/defaults/preferences/ \
 && FIREFOX_SETTING="/usr/lib/firefox/browser/defaults/preferences/firefox.js" \

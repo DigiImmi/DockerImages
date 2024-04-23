@@ -1,4 +1,4 @@
-FROM ghcr.io/digiimmi/btpanel-fresh:8.0.5
+FROM btpanel/baota:fresh
 
 RUN sed -i 's/enabled=1/enabled=0/' /etc/yum/pluginconf.d/fastestmirror.conf \
 && yum update -y && yum install -y coreutils curl \

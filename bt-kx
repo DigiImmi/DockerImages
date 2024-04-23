@@ -1,9 +1,9 @@
-FROM ghcr.io/digiimmi/btpanel-fresh:8.0.5
+FROM btpanel/baota:fresh
 
 RUN sed -i 's/enabled=1/enabled=0/' /etc/yum/pluginconf.d/fastestmirror.conf \
-&& yum update -y && yum install -y coreutils curl
-RUN curl http://io.bt.sy/install/update6.sh | bash -s -- 8.0.5
-RUN curl -o kaixin.zip https://raw.githubusercontent.com/flucont/btcloud/main/public/static/file/kaixin.zip \
+&& yum update -y && yum install -y coreutils curl \
+&& curl http://io.bt.sy/install/update6.sh | bash -s -- 8.0.5 \
+&& curl -o kaixin.zip https://raw.githubusercontent.com/flucont/btcloud/main/public/static/file/kaixin.zip \
 && unzip -o -d /www/server/panel/plugin kaixin.zip \
 && rm -f syupdate6.sh kaixin.zip \
 && rm -f /www/server/panel/data/iplist.txt

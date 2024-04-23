@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   FILENAME: bt-kx
-  PUSHTAG: 8.0.5
+  PUSHTAG: 8.1.0
   #FILENAME: php-app
 
 jobs:

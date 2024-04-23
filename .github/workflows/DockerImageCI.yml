@@ -9,7 +9,8 @@ on:
 ######
 env:
   REGISTRY: ghcr.io
-  FILENAME: kasmvnc-firefox
+  FILENAME: bt-kx
+  PUSHTAG: 7.9.4
   #FILENAME: php-app
 
 jobs:
@@ -24,7 +25,7 @@ jobs:
     steps:
       - name: Generate V
         run: |
-          echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
+          # echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
           REPO_OWNER=${{ github.repository_owner }}
           echo "REPO_OWNER=${REPO_OWNER,,}" >> $GITHUB_ENV 
           # REPO_NAME=${{ github.repository }}
@@ -59,5 +60,5 @@ jobs:
           push: true
           # 给清单打上多个标签
           tags: |
-            ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.FILENAME }}:${{ env.TIMESTAMP }}
+            ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.FILENAME }}:${{ env.PUSHTAG }}
             ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.FILENAME }}:latest

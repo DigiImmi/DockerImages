@@ -9,8 +9,8 @@ on:
 ######
 env:
   REGISTRY: ghcr.io
-  FILENAME: alireza0-xui
-  PUSHTAG: 1.8.2
+  FILENAME: docker-hoster
+  PUSHTAG: 202310
   #FILENAME: php-app
 
 jobs:

@@ -8,7 +8,7 @@ RUN apt-get update \
 && apt-get update && apt-get install tor deb.torproject.org-keyring -y \
 && xui_tag=$(wget -qO- -t1 -T2 "https://api.github.com/repos/alireza0/x-ui/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g') \
 && arch=$(if [ $(uname -m) = "aarch64" ]; then echo arm64; elif [ $(uname -m) = "x86_64" ]; then echo amd64; else echo s390x; fi) \
-&& wget -O - "https://github.com/FranzKafkaYu/x-ui/releases/download/$xui_tag/x-ui-linux-$arch.tar.gz" | tar -zxf - -C /tmp \
+&& wget -O - "https://github.com/alireza0/x-ui/releases/download/$xui_tag/x-ui-linux-$arch.tar.gz" | tar -zxf - -C /tmp \
 && mv /tmp/x-ui/bin/ /root/ \
 && mv /tmp/x-ui/x-ui /root/ \
 && echo SocksPort 0.0.0.0:9050 >> /etc/tor/torrc \

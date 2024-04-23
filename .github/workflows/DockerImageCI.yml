@@ -9,8 +9,8 @@ on:
 ######
 env:
   REGISTRY: ghcr.io
-  FILENAME: bt-kx
-  PUSHTAG: 8.1.0
+  FILENAME: alireza0-xui
+  PUSHTAG: 1.8.2
   #FILENAME: php-app
 
 jobs:

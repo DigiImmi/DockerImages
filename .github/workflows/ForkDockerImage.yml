@@ -11,8 +11,8 @@ env:
   REGISTRY: ghcr.io
   #TAR_IMG: ghcr.io/linuxserver/baseimage-kasmvnc:ubuntujammy
   #PUSH_NAME: baseimage-kasmvnc-ubuntujammy
-  TAR_IMG: ghcr.io/linuxserver/baseimage-alpine:3.19
-  PUSH_NAME: baseimage-alpine-3.19
+  TAR_IMG: btpanel/baota:7.9.4-fresh
+  PUSH_NAME: baota-fresh-7.9.4
   
 jobs:
   build-and-push:

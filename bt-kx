@@ -1,9 +1,12 @@
-FROM ghcr.io/digiimmi/btpanel-fresh:7.9.4
+FROM ghcr.io/digiimmi/btpanel-fresh:latest
 
 RUN sed -i 's/enabled=1/enabled=0/' /etc/yum/pluginconf.d/fastestmirror.conf \
 && yum update -y && yum install -y coreutils \
-&& wget -O syupdate6.sh http://io.bt.sy/install/update6.sh && bash syupdate6.sh -s -- 7.9.4 \
+&& wget -O syupdate6.sh http://io.bt.sy/install/update6.sh && bash syupdate6.sh  \
 && wget -O kaixin.zip https://raw.githubusercontent.com/flucont/btcloud/main/public/static/file/kaixin.zip \
 && unzip -o -d /www/server/panel/plugin kaixin.zip \
 && rm -f syupdate6.sh kaixin.zip \
 && rm -f /www/server/panel/data/iplist.txt
+
+
+## 指定版本参数，如 -s -- 7.9.4

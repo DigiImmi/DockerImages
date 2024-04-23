@@ -1,6 +1,7 @@
 FROM python:3.11-alpine
 
-RUN pip3 install docker \
+RUN apk update && apk add curl \
+&& pip3 install docker \
 && mkdir /hoster \
 && curl -fsL --output '/hoster/hoster.py' https://raw.githubusercontent.com/dvddarias/docker-hoster/master/hoster.py \
 && chmod +x /hoster/hoster.py

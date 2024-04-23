@@ -1,0 +1,8 @@
+FROM python:3.11-alpine
+
+RUN pip3 install docker \
+&& mkdir /hoster \
+&& curl -fsL --output '/hoster/hoster.py' https://raw.githubusercontent.com/dvddarias/docker-hoster/master/hoster.py
+WORKDIR /hoster
+
+CMD ["python3", "-u", "hoster.py"]

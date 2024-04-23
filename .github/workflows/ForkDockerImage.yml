@@ -9,9 +9,9 @@ on:
 #####
 env:
   REGISTRY: ghcr.io
-  TAR_IMG: btpanel/baota:7.9.4-fresh
+  TAR_IMG: btpanel/baota:fresh
   PUSH_NAME: btpanel-fresh
-  PUSH_TAG: 7.9.4
+  PUSH_TAG: 8.0.5
   
 jobs:
   build-and-push:

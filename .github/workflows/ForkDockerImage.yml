@@ -9,10 +9,9 @@ on:
 #####
 env:
   REGISTRY: ghcr.io
-  #TAR_IMG: ghcr.io/linuxserver/baseimage-kasmvnc:ubuntujammy
-  #PUSH_NAME: baseimage-kasmvnc-ubuntujammy
   TAR_IMG: btpanel/baota:7.9.4-fresh
-  PUSH_NAME: baota-fresh-7.9.4
+  PUSH_NAME: btpanel-fresh
+  PUSH_TAG: 7.9.4
   
 jobs:
   build-and-push:
@@ -26,7 +25,7 @@ jobs:
     steps:
       - name: Generate V
         run: |
-          echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
+          # echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
           REPO_OWNER=${{ github.repository_owner }}
           echo "REPO_OWNER=${REPO_OWNER,,}" >> $GITHUB_ENV 
     
@@ -51,8 +50,9 @@ jobs:
       
       - name: push
         run: |
+          PUSH_PATH="${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.PUSH_NAME }}"
           docker pull ${{ env.TAR_IMG }}
-          docker tag ${{ env.TAR_IMG }}  ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.PUSH_NAME }}:${{ env.TIMESTAMP }}
-          docker push ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.PUSH_NAME }}:${{ env.TIMESTAMP }}
-          docker tag ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.PUSH_NAME }}:${{ env.TIMESTAMP }}  ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.PUSH_NAME }}:latest
-          docker push ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.PUSH_NAME }}:latest
+          docker tag ${{ env.TAR_IMG }}  ${PUSH_PATH}:${{ env.PUSH_TAG }}
+          docker push ${PUSH_PATH}:${{ env.PUSH_TAG }}
+          docker tag ${PUSH_PATH}:${{ env.PUSH_TAG }}  ${PUSH_PATH}:latest
+          docker push ${PUSH_PATH}:latest

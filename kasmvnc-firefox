@@ -34,4 +34,5 @@ RUN apt-get update \
 && sed -i "s|UI.initSetting('enable_ime', false);|UI.initSetting('enable_ime', true);|" /usr/local/share/kasmvnc/www/dist/main.bundle.js \
 && sed -i "s|UI.initSetting('enable_webrtc', false);|UI.initSetting('enable_webrtc', true);|" /usr/local/share/kasmvnc/www/dist/main.bundle.js \
 && sed -i "s|UI.initSetting('enable_hidpi', false);|UI.initSetting('enable_hidpi', true);|" /usr/local/share/kasmvnc/www/dist/main.bundle.js \
+&& sed -i "s|_this._useUdp = true;|_this._useUdp = false;|" /usr/local/share/kasmvnc/www/dist/main.bundle.js \
 && sed -i 's/启动鼠标按鍵/激活鼠标按鍵/g; s/需要证件/需要凭证/g; s/钥匙/控键/g; s/向上剪贴板/剪贴板上传/g; s/"CLipboard Down": "剪贴板下"/"Clipboard Down": "剪贴板下载"/g; s/无缝剪贴板/剪贴板无缝共享/g; s/翻译键盘快捷键/键盘快捷键转换/g; s/输入法输入法/输入法模式/g; s/显示虚拟键盘控制/显示虚拟键盘控键/g; s/通过击键切换控制面板/通过按键切换控制面板/g; s/风俗/自定义/g; s/离开/关闭/g; s/"On": "在"/"On": "开启"/g; s/动态质量分钟/动态质量最小值/g' /usr/local/share/kasmvnc/www/app/locale/zh_CN.json

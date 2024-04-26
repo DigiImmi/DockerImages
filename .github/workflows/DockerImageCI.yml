@@ -9,7 +9,7 @@ on:
 ######
 env:
   REGISTRY: ghcr.io
-  FILENAME: xui
+  FILENAME: kasmvnc-firefox
   PUSHTAG: 202404
   #FILENAME: php-app
 

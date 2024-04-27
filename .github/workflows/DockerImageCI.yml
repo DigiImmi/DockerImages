@@ -9,8 +9,8 @@ on:
 ######
 env:
   REGISTRY: ghcr.io
-  FILENAME: alireza0-xui
-  PUSHTAG: 1.8.2
+  FILENAME: kasmvnc-firefox
+  PUSHTAG: 125.0.2
   #FILENAME: php-app
 
 jobs:

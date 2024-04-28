@@ -17,8 +17,8 @@ RUN apt-get update \
 && cp /usr/lib/firefox/browser/chrome/icons/default/default128.png /usr/share/icons/app_icon.png \
 && apt-get clean -y \
 && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
-&& echo 'mkdir -p /root/html' > /defaults/autostart \
-&& echo 'python3 -m http.server --bind 0.0.0.0 12700 --directory /root/html &' > /defaults/autostart \
+&& echo 'mkdir -p /config/html' > /defaults/autostart \
+&& echo 'python3 -m http.server --bind 0.0.0.0 12700 --directory /config/html &' > /defaults/autostart \
 && echo "${APP_START}" >> /defaults/autostart \
 && chmod 755 /defaults/autostart \
 && mkdir -p /usr/lib/firefox/browser/defaults/preferences/ \

@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   FILENAME: kasmvnc-firefox
-  PUSHTAG: 125.0.2
+  PUSHTAG: 123.0.1
   #FILENAME: php-app
 
 jobs:

@@ -3,18 +3,18 @@ FROM  ghcr.io/digiimmi/baseimage-kasmvnc-ubuntujammy:latest
 ENV TITLE="Firefox"
 
 ARG install_apps="bzip2 libgtk-3-0"
-ARG APP_Url="https://download-installer.cdn.mozilla.net/pub/firefox/releases/121.0/linux-x86_64/zh-CN/firefox-121.0.tar.bz2"
+ARG APP_Url="https://download-installer.cdn.mozilla.net/pub/firefox/releases/125.0.2/linux-x86_64/zh-CN/firefox-125.0.2.tar.bz2"
 ARG APP_START="while true; do firefox; done"
+ARG MENU_ICON="/usr/lib/firefox/browser/chrome/icons/default/default48.png"
+ARG MENU_COMMAND="/usr/bin/firefox"
 
 RUN apt-get update \
-&& apt-get install -y wget fonts-wqy-zenhei fonts-wqy-microhei ${install_apps} \
+&& apt-get install -y wget fonts-noto ${install_apps} \
 && wget ${APP_Url} -O app.tar.bz2 \
 && tar xjf app.tar.bz2 \
 && mv firefox /usr/lib \
 && ln -s /usr/lib/firefox/firefox /usr/bin/firefox \
 && rm app.tar.bz2 \
-&& mkdir -p /usr/share/icons \
-&& cp /usr/lib/firefox/browser/chrome/icons/default/default128.png /usr/share/icons/app_icon.png \
 && apt-get clean -y \
 && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
 && echo 'mkdir -p /config/html' > /defaults/autostart \
@@ -30,7 +30,7 @@ RUN apt-get update \
 && echo 'pref("trailhead.firstrun.branches", "nofirstrun-empty");' >> ${FIREFOX_SETTING} \
 && echo 'pref("browser.aboutwelcome.enabled", false);' >> ${FIREFOX_SETTING} \
 && sed -i "s|</applications>|  <application type=\"normal\">\n    <decor>no</decor>\n    <maximized>true</maximized>\n    <layer>below</layer>\n  </application>\n  <!-- Make sure YAD is not affected. -->\n  <application type=\"normal\" class=\"Yad\">\n    <decor>yes</decor>\n    <maximized>false</maximized>\n    <layer>above</layer>\n  </application>\n</applications>|" /etc/xdg/openbox/rc.xml \
-&& sed -i "s|</menu>|<item label=\"${TITLE}\" icon=\"/usr/share/icons/app_icon.png\"><action name=\"Execute\"><command>${APP_START}</command></action></item>\n</menu>|" /defaults/menu.xml \
+&& sed -i "s|</menu>|<item label=\"${TITLE}\" icon=\"${MENU_ICON}\"><action name=\"Execute\"><command>${MENU_COMMAND}</command></action></item>\n</menu>|" /defaults/menu.xml \
 && sed -i "s|UI.initSetting('enable_ime', false);|UI.initSetting('enable_ime', true);|" /usr/local/share/kasmvnc/www/dist/main.bundle.js \
 && sed -i "s|UI.initSetting('enable_webrtc', false);|UI.initSetting('enable_webrtc', true);|" /usr/local/share/kasmvnc/www/dist/main.bundle.js \
 && sed -i "s|UI.initSetting('enable_hidpi', false);|UI.initSetting('enable_hidpi', true);|" /usr/local/share/kasmvnc/www/dist/main.bundle.js \

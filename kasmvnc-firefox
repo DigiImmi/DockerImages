@@ -3,7 +3,7 @@ FROM  ghcr.io/digiimmi/baseimage-kasmvnc-ubuntujammy:latest
 ENV TITLE="Firefox"
 
 ARG install_apps="bzip2 libgtk-3-0"
-ARG APP_Url="https://download-installer.cdn.mozilla.net/pub/firefox/releases/123.0.1/linux-x86_64/zh-CN/firefox-123.0.1.tar.bz2"
+ARG APP_Url="https://download-installer.cdn.mozilla.net/pub/firefox/releases/121.0.1/linux-x86_64/zh-CN/firefox-121.0.1.tar.bz2"
 ARG APP_START="while true; do firefox; done"
 
 RUN apt-get update \
